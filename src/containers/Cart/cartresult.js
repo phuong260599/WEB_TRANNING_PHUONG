@@ -1,9 +1,16 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 class CartResult extends Component {
+
+  _onPostOrders= (cart) =>{
+    var orders = {
+      item: cart
+    }
+    this.props.postOrders(orders)
+  }
+
   render() {
-    var { cartresult } = this.props;
+    var { cart } = this.props;
 
     function formatPrice(n, currency, fix = 1) {
       if (!currency) currency = "";
@@ -22,7 +29,7 @@ class CartResult extends Component {
         </td>
         <td>
           <h4>
-            <strong>{formatPrice(this.showTotal(cartresult))}đ</strong>
+            <strong>{formatPrice(this.showTotal(cart))}đ</strong>
           </h4>
         </td>
         <td colSpan="3">
@@ -33,14 +40,14 @@ class CartResult extends Component {
           >
             Hủy
           </button>
-          <Link
-            to="/bill"
+          <button
             type="button"
             className="btn waves-effect waves-light"
             style={{ backgroundColor: "green", color: "white" }}
+            onClick={this._onPostOrders(cart)}
           >
             Thanh toán
-          </Link>
+          </button>
         </td>
       </tr>
     );
@@ -48,10 +55,13 @@ class CartResult extends Component {
 
   showTotal = (cart) => {
     var Total = 0;
-    for (var i = 0; i < cart.length; i++) {
-      Total += cart[i].product.price * cart[i].soluong;
+    if(cart)
+    {
+      for (var i = 0; i < cart.length; i++) {
+        Total += cart[i].price * cart[i].quantity;
+      }
+      return Total;
     }
-    return Total;
   };
 }
 

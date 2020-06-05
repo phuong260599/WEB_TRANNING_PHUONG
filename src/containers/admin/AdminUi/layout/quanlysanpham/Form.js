@@ -11,7 +11,6 @@ class QuanlysanphamADD extends Component {
       id: "",
       txtname: "",
       txtprice: "",
-      txtcontant: "",
       txtselect: "Categories",
       images: "",
       imagesEdit: "",
@@ -66,7 +65,6 @@ class QuanlysanphamADD extends Component {
       data.append("id", this.state.id);
       data.append("name", this.state.txtname);
       data.append("price", this.state.txtprice);
-      data.append("content", this.state.txtcontant);
       data.append("user_id", 1);
       data.append("category_id", this.state.txtselect);
       if (this.state.images) {
@@ -155,7 +153,7 @@ class QuanlysanphamADD extends Component {
                   </div>
                 </div>
                 <div className="form-row mt-3">
-                  <div className="col-md-4 mb-3">
+                  <div className="col-md-6 mb-3">
                     <label>Tên</label>
                     <input
                       name="txtname"
@@ -168,7 +166,7 @@ class QuanlysanphamADD extends Component {
                       required
                     />
                   </div>
-                  <div className="col-md-4 mb-3">
+                  <div className="col-md-6 mb-3">
                     <label>Giá</label>
                     <input
                       name="txtprice"
@@ -185,21 +183,6 @@ class QuanlysanphamADD extends Component {
                         {this.state.txtpriceErro}
                       </div>
                     ) : null}
-                  </div>
-                  <div className="col-md-4 mb-3">
-                    <div>
-                      <label>Chi tiết</label>
-                      <input
-                        name="txtcontant"
-                        className="form-control"
-                        value={this.state.txtcontant}
-                        onChange={this._onChangeText}
-                        type="text"
-                        placeholder="Contant"
-                        style={{ borderColor: "black" }}
-                        required
-                      />
-                    </div>
                   </div>
                 </div>
                 <button

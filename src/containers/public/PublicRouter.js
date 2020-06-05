@@ -28,8 +28,8 @@ class PublicRouter extends React.Component {
           <Route path="/" exact component={HomePage} />
           <Route path="/foodTable/:id" exact component={Drink} />
           <Route path="/danhnhap/login" exact history component={loginMember} />
-          <Route path="/cart" exact component={Cart} />
-          <Route path="/bill" exact component={Billmanager} />
+          <Route path="/cart" exact history component={Cart} />
+          <Route path="/bill" exact history component={Billmanager} />
           <Route path="/dangky" exact component={RegisterMember} />
           <Route path="/history" exact component={History} />
           <Route path="/member/detail" exact component={Detail} />

@@ -7,7 +7,7 @@ import QuanlysanphamADD from './AdminUi/layout/quanlysanpham/Form';
 import NotFound from '../../notFound';
 import Login from './AdminUi/login/LoginAdmin';
 import QuanlyUser from './AdminUi/layout/quanlyuser/index';
-import FormInfoUser from './AdminUi/layout/quanlyuser/FormInfoUser';
+import DetailUser from './AdminUi/layout/quanlyuser/userProfile';
 import PrivateRouter from './PrivateRouter';
 import {connect} from 'react-redux';
 import Register from './AdminUi/registerAdmin/Dangky';
@@ -26,7 +26,7 @@ class AdminRouter extends React.Component {
           <Route path="/admin/login" exact  history component={Login} />
           <Route path="/admin/register" exact  history component={Register} />
           <PrivateRouter path= "/admin/quanlyuser" exact history component={QuanlyUser} redirect='/admin/login' signedIn={isLoginAdmin ? true : false} />
-          <Route path= "/admin/quanlyuser/info" exact component={FormInfoUser} />  
+          <Route path= "/admin/quanlyuser/profile" exact component={DetailUser} />  
           <Route path= '' component={NotFound} />
         </Switch>
       </div>

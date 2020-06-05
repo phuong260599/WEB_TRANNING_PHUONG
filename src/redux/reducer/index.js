@@ -7,7 +7,8 @@ import { default as productsAdminReducer } from "./product/productAdmin";
 import { default as cartReducer } from "./cart/cart";
 import { default as loginAdminReducer } from "./loginAmin/login";
 import {default as userReducer} from './ListUser/listUser';
-import {default as loginMember} from './loginMember/member'
+import {default as loginMember} from './loginMember/member';
+import {default as profilesUsers } from './ListUser/profileUser';
 
 const reducer = combineReducers({
   categories: categoriesReducer,
@@ -17,7 +18,8 @@ const reducer = combineReducers({
   cart: cartReducer,
   loginAdmin: loginAdminReducer,
   userList: userReducer,
-  loginMember: loginMember
+  loginMember: loginMember,
+  profileUser: profilesUsers
 });
 
 export default reducer;

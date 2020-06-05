@@ -7,7 +7,9 @@ import {
   USER_DELETE_SUCCESS,
   USER_DELETE_REQUEST,
   USER_ADD_REQUEST,
-  USER_ADD_SUCCESS
+  USER_ADD_SUCCESS,
+  GET_PROFILE_USER_REQUEST,
+  GET_PROFILE_USER_SUCCESS
 } from '../types/user';
 
 function* getData() {
@@ -80,8 +82,33 @@ function* addUser({ dataUser }) {
  
 }
 
+
 function* addUserRequest() {
   yield takeLatest(USER_ADD_REQUEST, addUser);
+}
+
+// get profile
+
+function* getProfile({id}) {
+  try{
+    var data = localStorage.getItem("LOGINADMIN");
+    axios.defaults.headers.common['AUTH-TOKEN'] = data;
+    const res = yield axios.get(`http://dboi.info/api/users/${id}`);
+    console.log(res)
+    if (res.status === 200) {
+      const { data } = res.data;
+      yield put({ type: GET_PROFILE_USER_SUCCESS, payload: data });
+    }
+  }
+  catch(error)
+  {
+    console.log("error")
+  }
+ 
+}
+
+function* getProfileRequest() {
+  yield takeLatest(GET_PROFILE_USER_REQUEST, getProfile);
 }
 
 // // GET_EDIT
@@ -132,6 +159,7 @@ export default function* () {
     deleteUsetRequest(),
     getListUser(),
     addUserRequest(),
+    getProfileRequest(),
     // getDatatoEdit(),
     // getUpdateEdit(),
   ]);

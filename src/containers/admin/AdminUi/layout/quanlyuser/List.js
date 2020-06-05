@@ -13,6 +13,11 @@ class ListItem extends Component {
     // this.props.onDelete(id);
   }
 
+  _onGetProfile = (id) =>{
+    console.log(id);
+    this.props.getProfile(id)
+  }
+
   render() {
     const {users} = this.props;
     return (
@@ -41,7 +46,8 @@ class ListItem extends Component {
                     <Link
                       type="button"
                       className="btn btn-sm mr-2 btn-items"
-                      to="/admin/quanlyuser/info"
+                      to="/admin/quanlyuser/profile"
+                      onClick={() =>this._onGetProfile(user.id)}
                     >
                       Chi tiết
                     </Link>
@@ -71,6 +77,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getData: () => dispatch({type: "USER_GET_REQUEST"}),
+    getProfile: (id) => dispatch({type: 'GET_PROFILE_USER_REQUEST', id:id})
     // onDelete: (id) => dispatch({type: 'USER_DELETE_REQUEST', id: id})
   };
 };

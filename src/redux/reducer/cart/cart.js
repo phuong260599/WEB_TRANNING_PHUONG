@@ -3,6 +3,7 @@ import {
   GET_CART_ITEMS_SUCCESS,
   DELETE_CART_ITEMS_SUCCESS,
   ADD_CART_ITEMS_SUCCESS,
+  POST_ORDER_SUCCESS,
 } from "../../types/cart";
 
 var defaultState = {
@@ -41,6 +42,11 @@ const card = (state = defaultState, action) => {
     //   }
     //   localStorage.setItem("CART", JSON.stringify(state));
     //   return [...state];
+    // case POST_ORDER_SUCCESS:
+    //   return{
+    //     ...state,
+    //     data: []
+    //   }
     default:
       return state;
   }

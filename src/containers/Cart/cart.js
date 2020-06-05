@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CartItem from "./cartItem";
+import CartResult from './cartresult';
 import { connect } from "react-redux";
 
 class Cart extends Component {
@@ -9,7 +10,6 @@ class Cart extends Component {
   }
 
   render() {
-    console.log(this.props.cart)
     const itemCart = () => {
       var cart= null;
       this.props.cart ? cart = this.props.cart : cart = []
@@ -50,13 +50,18 @@ class Cart extends Component {
                     />
                   );
                 })}
-               
+                <CartResult cart={this.props.cart} postOrders={this.postOrders}/>
               </tbody>
             </table>
           </div>
         </div>
       </section>
     );
+  }
+
+  postOrders = (cart) =>{
+    this.props.postOrders(cart)
+    this.props.history.push("/bil") 
   }
 
   onDeleteCart = (id) => {
@@ -82,7 +87,8 @@ const mapDispatchtoProps = (dispatch, props) => {
         type: "UPDATE_QUANTITY_CART_REQUEST",
         updatequantity:updatequantity
       }),
-    onGetCartData:() => dispatch({type: 'GET_CART_ITEMS_REQUEST'})
+    onGetCartData:() => dispatch({type: 'GET_CART_ITEMS_REQUEST'}),
+    postOrders: (cart) => dispatch({type: "POST_ORDER_REQUEST", cart: cart})
   };
 };
 

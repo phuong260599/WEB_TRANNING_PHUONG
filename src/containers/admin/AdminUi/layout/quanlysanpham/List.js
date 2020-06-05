@@ -28,7 +28,6 @@ class ListItem extends Component {
               >
                 Name
               </th>
-              <th style={{ width: "10%", textAlign: "center" }}>Content</th>
               <th style={{ width: "15%" }} className="text-center">
                 Price
               </th>

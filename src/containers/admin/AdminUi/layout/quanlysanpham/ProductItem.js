@@ -37,13 +37,10 @@ class ItemTest extends Component {
                 />
               </td>
               <td style={{ verticalAlign: "middle", textAlign: "center" }}>
-                {e.category_id}
+                {e.category.name}
               </td>
               <td style={{ verticalAlign: "middle", textAlign: "center" }}>
                 {e.name}
-              </td>
-              <td style={{ verticalAlign: "middle", textAlign: "center" }}>
-                {e.content}
               </td>
               <td style={{ verticalAlign: "middle", textAlign: "center" }}>
                 {e.price}
@@ -71,7 +68,7 @@ class ItemTest extends Component {
       </tbody>
     );
   }
-}
+} 
 const mapStateToProps = (state) => {
   return {
     data: state.productsAdmin.data,

@@ -19,27 +19,26 @@ class Billmanager extends Component {
               </th>
               <th style={{ width: "15%" }}>Tổng cộng</th>
             </tr>
-            <td colSpan="3">
-            <Link
-              to="/cart"
-              type="button"
-              className="btn waves-effect waves-light mr-2"
-              style={{ backgroundColor: "red", color: "white" }}
-            >
-              Quay lại
-            </Link>
-            <Link
-              to="/bill"
-              type="button"
-              className="btn waves-effect waves-light"
-              style={{ backgroundColor: "green", color: "white" }}
-            >
-                Xác nhận
-            </Link>
-          </td>
           </thead>
-          <tbody></tbody>
+          <tbody>
+          </tbody>
         </table>
+        <Link
+        to="/cart"
+        type="button"
+        className="btn waves-effect waves-light mr-2"
+        style={{ backgroundColor: "red", color: "white" }}
+      >
+        Quay lại
+      </Link>
+      <Link
+        to="/bill"
+        type="button"
+        className="btn waves-effect waves-light"
+        style={{ backgroundColor: "green", color: "white" }}
+      >
+          Xác nhận
+      </Link> 
       </div>
     );
   }

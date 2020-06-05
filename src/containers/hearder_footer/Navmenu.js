@@ -30,7 +30,6 @@ class Navmenu extends Component {
   render() {
     const { categories,cart } = this.props;
     const {memberName} = this.props;
-    console.log(cart)
     return (
       <nav
         className="navbar navbar-expand-sm fixed-top navbar-light rounded"
@@ -152,23 +151,21 @@ class Navmenu extends Component {
 
   _showQuantily = (cart) =>{
     var totalQuanlity =  null;
-    if(cart)
-    {
-    if(cart.length <=0 )
-    {
-      totalQuanlity= 0;
-    }
-    else
+    if(cart && cart.length > 0 )
     {
       for( var i = 0; i < cart.length;i++)
       {
         totalQuanlity+=cart[i].quantity
       }
-    }
-      return parseInt(totalQuanlity);
-    }
   }
+    else
+    {
+      totalQuanlity= 0;
+      
+    }
+    return totalQuanlity;
   }
+}
    
 
 const mapStateToProps = (state) => {

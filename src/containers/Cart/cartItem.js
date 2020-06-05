@@ -3,11 +3,6 @@ import React, { Component } from "react";
 
 class CartItem extends Component {
 
-  UNSEFT_componentWillReceiveProps(nextProps)
-  {
-
-  }
-
 
   render() {
     function formatPrice(n, currency, fix = 1) {
@@ -19,7 +14,6 @@ class CartItem extends Component {
     }
 
     var { cart } = this.props;
-    console.log(cart)
     return (
       <tr>
         <td style={{ verticalAlign: "middle" }}>

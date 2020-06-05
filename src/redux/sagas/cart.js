@@ -8,6 +8,8 @@ import {
   GET_CART_ITEMS_REQUEST,
   ADD_CART_ITEMS_SUCCESS,
   ADD_CART_ITEMS_REQUEST,
+  POST_ORDER_SUCCESS,
+  POST_ORDER_REQUEST,
   // UPDATE_QUANTITY_CART_SUCCESS,
   // UPDATE_QUANTITY_CART_REQUEST,
 } from "../types/cart";
@@ -18,7 +20,6 @@ function* getCartData() {
   if (token) {
     axios.defaults.headers.common["AUTH-TOKEN"] = token;
     const res = yield axios.get("http://dboi.info/api/items");
-    console.log(res);
     if (res.status === 200) {
       const { data } = res.data;
       yield put({ type: GET_CART_ITEMS_SUCCESS, payload: data });
@@ -46,6 +47,24 @@ function* addCartItems({ addItem }) {
 
 function* addCartItemsRequest() {
   yield takeLatest(ADD_CART_ITEMS_REQUEST, addCartItems);
+}
+
+// Post Orders
+function* postorders({ cart }) {
+  console.log("saga",cart)
+  var token = localStorage.getItem("LOGINMEMBER");
+  if (token) {
+    axios.defaults.headers.common["AUTH-TOKEN"] = token;
+    const res = yield axios.post("http://dboi.info/api/orders", cart);
+    if (res.status === 200) {
+     console.log("Thêm thành công", res.data)
+     yield put({ type: POST_ORDER_SUCCESS });
+    }
+  }
+}
+
+function* postordersRequest() {
+  yield takeLatest(POST_ORDER_REQUEST, postorders);
 }
 
 // delete
@@ -79,6 +98,7 @@ function* deleteItemsRequest() {
 
 export default function* () {
   yield all([
+    postordersRequest(),
     getCartDataRequest(),
     addCartItemsRequest(),
     deleteItemsRequest(),
